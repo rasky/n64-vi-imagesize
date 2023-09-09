@@ -42,6 +42,15 @@ int main() {
         graphics_set_color(graphics_make_color(0x1F, 0x20, 0x41, 0xFF), 0);
 
         char buf[64];
+        graphics_draw_text(fb, 10, 10, "Adjust with D-Pad / C-Pad");
+        switch (get_tv_type()) {
+            case TV_PAL: sprintf(buf, "PAL"); break;
+            case TV_NTSC: sprintf(buf, "NTSC"); break;
+            case TV_MPAL: sprintf(buf, "MPAL"); break;
+            default: sprintf(buf, "Unknown"); break;
+        }
+        graphics_draw_text(fb, 100, 90, "TV system: ");
+        graphics_draw_text(fb, 100+11*8, 90, buf);
         sprintf(buf, "H_VIDEO: %08lx\n", H_VIDEO);
         graphics_draw_text(fb, 100, 100, buf);
         sprintf(buf, "V_VIDEO: %08lx\n", V_VIDEO);
